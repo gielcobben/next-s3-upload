@@ -58,9 +58,9 @@ export const useS3Upload = () => {
     }
   };
 
-  let uploadToS3 = async (file: File) => {
+  let uploadToS3 = async (file: File, fetchOptions: RequestInit = {}) => {
     let filename = encodeURIComponent(file.name);
-    let res = await fetch(`/api/s3-upload?filename=${filename}`);
+    let res = await fetch(`/api/s3-upload?filename=${filename}`, fetchOptions);
     let data = await res.json();
 
     if (data.error) {
